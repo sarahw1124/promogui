@@ -1,0 +1,92 @@
+
+<!-- <span class ="comment">{{selValue}} will ve updated to {{selOption }}from </span> -->
+<div calss="ng-container">
+
+
+  <div>
+      <button class="myButton" (click)="change_status_filter('Ready')">Filter by Ready</button>
+      <button class="myButton" (click)="change_status_filter('Setup')">Filter by Setup</button>
+      <button class="myButton" (click)="change_status_filter('Reserved')">Filter by Reserved</button></div>              
+    
+  
+  
+           <div>
+              <input type="text" name="sdnis" placeholder="Search By Dinis" #sdnis> <button class="myButton sr" (click)="search_filter(sdnis.name,sdnis.value)">Go</button>
+              <input type="text" name="scriptid" placeholder="Search By ScriptID" #scriptid> <button class="myButton sr" (click)="search_filter(scriptid.name,scriptid.value)">Go</button>
+             <input type="text" name="detailname" placeholder="Search By DetailName" #detailname> <button class="myButton sr" (click)="search_filter(detailname.name,detailname.value)">Go</button>
+      </div>
+  <span class="warning">{{errorMessage}}</span>
+  <span class="search">{{searchMessage}}</span>
+  <ng-container >
+  
+            <table  class="mytable" ng-controller="myCtrl"  *ngIf="results">
+                <thead >
+                  
+                    <tr>
+                        <th>Edit Status</th>
+                    
+                        <th>DNIS</th>
+                        <th>SCRIPTID</th>
+                         <th>SOURCE</th>
+                        <th> DETAILNAME</th>
+                        <th> STARTDATE</th>
+                        <th> ENDDATE</th>
+                        <th> STATUS</th>
+                        <th> NOQUESTIONS</th>
+                        <th> SCRIPTTYPE</th>
+                        <th> UPDATEDBY</th>
+                        <th> UPDATED</th>
+                        <th> STSTATUS</th>
+                        <th> STSTORES</th>
+                        <th> APPTYPE</th>
+                        <th> SUBTYPE</th>
+                        <th> DATETEST</th>
+                        <th> TESTEDBY</th>
+                        <th> INTERNALUPDATED</th>
+                        <th> INTERNALUPDATEDBY</th>
+              
+                       
+                    </tr>
+            
+                <tbody>
+                    <tr  *ngFor="let result of results;">
+              <td> <select name="sel" (change)="update_data(result.STATUS,myselect.value,result.DNIS)" #myselect>
+                      <option >Update Status</option>                   
+                      <option value="Reserved">Reserved</option>
+                      <option value="Setup">Setup</option>
+                      <option value="Ready" >Ready</option>
+                    </select></td>
+            <td>{{result.DNIS }}</td>   
+            <td>{{result.SCRIPTID }}</td>  
+            <td>{{result.SOURCE }}</td>
+            <td>{{result.DETAILNAME }}</td>  
+            <td>{{result.STARTDATE }}</td> 
+              <td>{{result.ENDDATE }}</td>  
+              <td class="status">{{result.STATUS}}</td>
+              <td>{{result.NOQUESTIONS}}</td> 
+              <td>{{result.SCRIPTTYPE}}</td>
+              <td>{{result.UPDATEDBY}}</td>
+              <td>{{result.UPDATED}}</td>
+              <td>{{result.STSTATUS}}</td>
+              <td>{{result.STSTORES}}</td>
+              <td>{{result.APPTYPE}}</td>
+              <td>{{result.SUBTYPE}}</td>
+              <td>{{result.DATETEST}}</td>
+              <td>{{result.TESTEDBY}}</td>
+              <td>{{result.INTERNALUPDATED}}</td>
+              <td>{{result.INTERNALUPDATEDBY}}</td>
+        </tr>
+     
+        
+      <!--   <tr *ngIf="!result || result.length==0">
+            <td colspan="5">
+                No Records to display
+            </td>
+        </tr> -->
+  
+    </tbody>
+  </table>
+  </ng-container></div>
+  <!-- {{ results |json}}  -->
+  
+  
